@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 20200803 -->
+<mapper namespace="com.study.springboot.dao.IOrder_Qna_DAO">
+   <insert id="order_Qna_Insert">
+      insert into OQNA (idx, originno, grouplayer,o_number ,oq_category , oq_email,oq_name , oq_title , oq_content) 
+         values (oqna_seq.nextval, oqna_seq.nextval, 0 , #{param1} , #{param2} , #{param4} ,#{param3} ,#{param5},#{param6})
+   </insert>
+   <select id="order_My_Qna_List" parameterType="com.study.springboot.domain.Criteria" resultType="com.study.springboot.dto.Order_Qna_DTO">
+			SELECT * FROM 
+			(SELECT idx, originno, grouplayer,groupord,o_number,oq_category,oq_name,oq_email,oq_title,oq_content,oq_date, row_number() over(order by ORIGINNO desc) as rNum
+			FROM OQNA WHERE ORIGINNO IN (SELECT ORIGINNO FROM OQNA
+			WHERE Oq_email = #{u_email}) ORDER BY ORIGINNO DESC, grouplayer ASC) where rNum between #{rowStart} and #{rowEnd} 
+   </select>
+   
+   <select id="order_Qna_Detail" resultType="com.study.springboot.dto.Order_Qna_DTO">
+   		select * from oqna where idx = #{param1}
+   </select>
+   
+   <update id="update_Order_Qna">
+   		update oqna set oq_title = #{param2} ,oq_content = #{param3} where idx = #{param1}
+   </update>
+   
+   <delete id="order_qna_delete">
+   		delete from oqna where originno = #{param1} 
+   </delete>
+   
+   <delete id="order_admin_Qna_Delete">
+   		delete from oqna where idx = #{param1} 
+   </delete>
+   
+  	<select id="o_listCount" resultType="int">
+		SELECT COUNT(*) FROM (SELECT IDX,OQ_CATEGORY,OQ_EMAIL,OQ_TITLE,OQ_CONTENT,OQ_DATE,ORIGINNO,GROUPLAYER,GROUPORD,O_NUMBER,OQ_NAME
+		FROM OQNA WHERE ORIGINNO IN (SELECT ORIGINNO FROM OQNA WHERE oq_email = #{param1}))
+	</select>
+	
+	<select id="articleCount" resultType="int">
+      <![CDATA[ SELECT COUNT(idx) FROM (
+               SELECT IDX FROM oqna 
+              )WHERE idx >= 0
+      ]]>
+   </select>
+   
+     <select id="find_Qna_oListDao" parameterType="String" resultType="com.study.springboot.dto.Order_Qna_DTO">
+         select IDX,OQ_CATEGORY,OQ_EMAIL,OQ_TITLE,OQ_CONTENT,OQ_DATE,ORIGINNO,GROUPORD,GROUPLAYER,O_NUMBER,OQ_NAME
+          from (
+              select IDX,OQ_CATEGORY,OQ_EMAIL,OQ_TITLE,OQ_CONTENT,OQ_DATE,ORIGINNO,GROUPORD,GROUPLAYER,O_NUMBER,OQ_NAME,
+                  row_number() over(order by ORIGINNO desc) as rNum
+              from oqna ${ query } order by ORIGINNO desc , GROUPORD ASC
+              ) 
+          where rNum between #{rowStart} and #{rowEnd} 
+   </select>
+
+   <select id="pna_listCountDao" parameterType="String" resultType="int">
+      select count(idx) from oqna where idx > 0 ${ query }
+   </select>
+
+	<insert id="order_qna_reply">
+         insert into OQNA (IDX,OQ_CATEGORY,OQ_EMAIL,OQ_TITLE,OQ_CONTENT,ORIGINNO,GROUPORD,GROUPLAYER,O_NUMBER,OQ_NAME) 
+            values (oqna_seq.nextval, #{ OQ_CATEGORY }, #{OQ_EMAIL}, #{ OQ_TITLE } , #{OQ_CONTENT} , #{ORIGINNO} , #{GROUPORD} ,#{GROUPLAYER} ,#{O_NUMBER},#{OQ_NAME})
+   </insert>
+   
+   
+   <select id="o_originNoCount" resultType="int">
+         SELECT count(*) FROM oqna WHERE originno = #{param1} 
+   </select>
+   
+
+   
+</mapper>

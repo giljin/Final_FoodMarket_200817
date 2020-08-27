@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IProduct_Qna_DAO">
+   
+      
+   <insert id="product_Qna_Insert">
+      insert into PQNA (idx, originno, grouplayer,p_name ,q_category , q_email,q_name , q_title , q_content) 
+         values (pqna_seq.nextval, pqna_seq.nextval, 0 , #{param1} , #{param2} , #{param3} ,#{param4} ,#{param5},#{param6})
+   </insert>
+   
+   <!-- 20200731 수정 -->
+   <select id="product_Qna_List" resultType="com.study.springboot.dto.Product_Qna_DTO">
+   		select * from PQNA where p_name = #{param1} order by ORIGINNO desc , GROUPORD ASC
+   </select>
+   <!-- 20200731 수정 -->
+   <select id="product_Qna_Detail" resultType="com.study.springboot.dto.Product_Qna_DTO">
+   		select * from PQNA where idx = #{param1} 
+   </select>
+   <!-- 20200803 -->
+   <select id="product_My_Qna_List"  parameterType="com.study.springboot.domain.Criteria"  resultType="com.study.springboot.dto.Product_Qna_DTO">	     
+		    select IDX,Q_CATEGORY,Q_EMAIL,Q_TITLE,Q_CONTENT,Q_DATE,ORIGINNO,GROUPLAYER,GROUPORD,P_NAME,Q_NAME
+            from (
+		        select IDX,Q_CATEGORY,Q_EMAIL,Q_TITLE,Q_CONTENT,Q_DATE,ORIGINNO,GROUPLAYER,GROUPORD,P_NAME,Q_NAME,
+                row_number() over(order by ORIGINNO desc) as rNum
+		        from pqna where ORIGINNO IN (            
+                                                            select ORIGINNO
+                                                            from ( 	select IDX,Q_CATEGORY,Q_EMAIL,Q_TITLE,Q_CONTENT,Q_DATE,ORIGINNO,GROUPLAYER,GROUPORD,P_NAME,Q_NAME
+                            													from pqna where q_email = #{u_email}) 
+                                                            )  order by ORIGINNO desc , GROUPORD ASC
+		    ) 	 where rNum between #{rowStart} and #{rowEnd}
+   </select>
+      <update id="update_Product_Qna">
+   		update pqna set q_title = #{param2} ,q_content = #{param3} where idx = #{param1}
+   </update>
+   
+   <delete id="product_Qna_Delete">
+   		delete from pqna where originno = #{param1}
+   </delete>
+   
+   <delete id="product_admin_Qna_Delete">
+   		delete from pqna where idx = #{param1}
+   </delete>
+   	<!-- mypage에서 갯수 -->
+    <select id="p_listCount" resultType="int">
+		SELECT COUNT(*) FROM (SELECT IDX,Q_CATEGORY,Q_EMAIL,Q_TITLE,Q_CONTENT,Q_DATE,ORIGINNO,GROUPLAYER,GROUPORD,P_NAME,Q_NAME
+		FROM PQNA WHERE ORIGINNO IN (SELECT ORIGINNO FROM PQNA WHERE q_email = #{param1}))
+	</select>
+	
+	<insert id="product_qna_reply">
+         insert into PQNA (idx, originno, groupOrd, grouplayer, p_name ,q_category , q_email,q_name , q_title , q_content) 
+            values (pqna_seq.nextval, #{ ORIGINNO }, #{GROUPORD}, #{ GROUPLAYER } , #{P_NAME} , #{Q_CATEGORY} , #{Q_EMAIL} ,#{Q_NAME} ,#{Q_TITLE},#{Q_CONTENT})
+   </insert>
+   
+     <select id="find_Qna_ListDao" parameterType="String" resultType="com.study.springboot.dto.Product_Qna_DTO">
+         select IDX,Q_CATEGORY,Q_EMAIL,Q_TITLE,Q_CONTENT,Q_DATE,ORIGINNO,GROUPORD,GROUPLAYER,P_NAME,Q_NAME
+          from (
+              select IDX,Q_CATEGORY,Q_EMAIL,Q_TITLE,Q_CONTENT,Q_DATE,ORIGINNO,GROUPORD,GROUPLAYER,P_NAME,Q_NAME,
+                  row_number() over(order by ORIGINNO desc) as rNum
+              from pqna ${ query } order by ORIGINNO desc , GROUPORD ASC
+              ) 
+          where rNum between #{rowStart} and #{rowEnd} 
+   </select>
+   
+   <select id="originNoCount" resultType="int">
+         SELECT count(*) FROM pqna WHERE originno = #{param1} 
+   </select>
+   
+   <!-- adminpage에서 갯수 -->
+   <select id="pna_listCountDao" parameterType="String" resultType="int">
+      select count(idx) from pqna where idx > 0 ${ query }
+   </select>
+   
+</mapper>

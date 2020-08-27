@@ -1,0 +1,82 @@
+#title{
+	text-align: center;
+}
+#keywordCategory{
+	display: inline-block;
+	width: 13%;
+}
+#keyword{
+	display: inline-block;
+    border: 1px solid #CCC;
+    line-height: 28px;
+    position: relative;
+    top: -2px;
+    width: 50%;
+    padding-left: 5px;
+}
+#productSearch{
+	width:100%;
+	border-top: 1px solid black;
+	margin-bottom: 20px;
+}
+#productSearch tr{
+	border-bottom: 1px solid lightgray;
+}
+#productSearch th{
+	width: 10%;
+	text-align: center;
+}
+#productSearch td{
+	text-align: left;
+    font-size: 12px;
+}
+#productSearch td input[name=category]{
+	margin-left: 10px;
+}
+.search {
+    background: #0080ff;
+    border: 1px solid #ddd;
+    color: #ffffff;
+    padding: 10px 40px;
+}
+.clear {
+    padding: 10px 20px;
+    border: none;
+}
+#sortCategory {
+    display: inline-block;
+    width: 13%;
+    float: right;
+}
+.searchBtns {
+    margin-bottom: 50px;
+    text-align: center;
+}
+#productList{
+	border-top: 1px solid black;
+	width: 100%;
+}
+#productList th{
+	text-align: center;
+}
+#productList tr{
+	border-bottom: 1px solid lightgray;
+}
+#productList td{
+	font-size: 14px;
+}
+#listCount {
+    float: left;
+}
+#productList td img{
+	width: 100%;
+	height: 79px;
+}
+#cri{
+	text-align: center;
+	margin-top: 10px;
+}
+#cri li{
+	display: inline-block;
+	margin-right: 10px;
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IWriteDAO">
+	<insert id="write_Upload">
+		insert into write (idx,w_title,w_email,w_grade,w_content,w_filename,o_idx) values (w_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+	</insert>
+	
+	<select id="listWriteDao" resultType="com.study.springboot.dto.WriteDTO"> 
+      select * from write order by idx desc
+   </select>
+   
+	<select id="get_My_ReviewList" parameterType="com.study.springboot.domain.Criteria" resultType="com.study.springboot.dto.WriteDTO">
+				    select idx, w_title, w_email, w_grade,w_content,w_date,w_filename,o_idx
+		    from (
+		        select idx, w_title, w_email, w_grade,w_content,w_date,w_filename,o_idx,
+		            row_number() over(order by idx desc) as rNum
+		        from write
+		        ) 
+		    where w_email = #{u_email} and rNum between #{rowStart} and #{rowEnd}
+		        order by idx desc
+	</select>
+   
+   <select id="viewWriteDao" resultType="com.study.springboot.dto.WriteDTO"> 
+      select * from write where w_title = #{param1}
+   </select>
+   
+ 	<select id="get_My_Review" resultType="com.study.springboot.dto.WriteDTO">
+		SELECT * FROM write where idx = #{param1} 
+	</select>
+	<update id="update_my_review" >
+		update write set w_grade=#{param2} ,w_content=#{param3},w_filename =#{param4}, w_date = sysdate where idx = #{param1}
+	</update>
+	<delete id="delete_my_review">
+		delete from write where idx=#{param1}
+	</delete>
+	
+	<select id="listPage" resultType="com.study.springboot.dto.WriteDTO" parameterType="com.study.springboot.domain.Criteria">
+		    select idx, w_title, w_email, w_grade,w_content,w_date,w_filename,o_idx
+		    from (
+		        select idx, w_title, w_email, w_grade,w_content,w_date,w_filename,o_idx,
+		            row_number() over(order by idx desc) as rNum
+		        from write
+		        ) mb
+		    where rNum between #{rowStart} and #{rowEnd}
+		        order by idx desc
+	</select>
+	
+	<select id="listCount" resultType="int">
+		select count(idx) from write where idx > 0 and w_email = #{param1}
+	</select>
+	
+	<select id="bestWriteDao" resultType="com.study.springboot.dto.WriteDTO"> 
+      <![CDATA[ SELECT * FROM (SELECT * FROM write ORDER BY idx DESC ) WHERE ROWNUM <= 4 ]]>
+   </select>
+	
+</mapper>

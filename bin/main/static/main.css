@@ -1,0 +1,369 @@
+* {
+   margin: 0;
+   padding: 0;
+   font-family: Montserrat,Apple SD Gothic Neo,-apple-system,BlinkMacSystemFont,NanumBarunGothic,Malgun Gothic,"\B9D1\C740 \ACE0\B515",Dotum,\\B3CB\C6C0,sans-serif;
+}
+body{
+    font-family: Montserrat,Apple SD Gothic Neo,-apple-system,BlinkMacSystemFont,NanumBarunGothic,Malgun Gothic,"\B9D1\C740 \ACE0\B515",Dotum,\\B3CB\C6C0,sans-serif;
+}
+li {
+   list-style: none;
+}
+
+a {
+   text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+
+#wrap {
+   width: 960px;
+   margin: 0 auto;
+}
+
+header {
+   width: 100%;
+}
+
+#header_top {
+   background: #f5f5f5;
+   color: #424242;
+   font-size: small;
+   height: 30px;
+   text-align: right;
+}
+
+#header_top>ul {
+   line-height: 30px;
+   display: inline-block;
+   list-style-type: disc;
+}
+
+#header_top>ul>li {
+   display: inline-block;
+   margin-right: 5px;
+}
+
+#header_top>ul>li>a {
+   text-decoration: inherit;
+   color: inherit;
+}
+
+#header_mid {
+   width: 100%;
+   height: 55px;
+}
+
+#logo {
+   display: inline-block;
+   width: 70%;
+   height : 100px;
+   text-align: right;
+}
+#logo > a{
+   display:inline-block;
+   position: relative;
+   top: 5px;
+   right: 110px;
+   width: 200px;
+   height : 48px;
+}
+#search {
+    position: relative;
+    top: 10px;
+    display: inline-block;
+    margin-left: 108px;
+}
+#search_bar>form {
+   display: inline-block;
+}
+
+#search_bar>a>img {
+   position: relative;
+   top: -1.5px;
+   right: 26px;
+   width: 18px;
+   height: 18px;
+}
+#search_image{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    background-image: url(./image/search_icon.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 19px;
+    height: 21px;
+    border: 0px;
+    outline: 0;
+}
+nav {
+   position: relative;
+}
+
+#category {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 1px solid #d9d9d9;
+}
+
+#category>div {
+   display: inline-block;
+   width: 111px;
+}
+
+#category>:nth-child(1) {
+   background-color: #262626;
+   display: inline-block;
+   width: 150px;
+   text-align: center;
+   line-height: 30px;
+   height: 30px;
+   color: #fff;
+   font-size: 12px;
+   margin-bottom: 1px;
+}
+
+.carousel-inner>.item {
+   height: 35vh;
+}
+
+.carousel-inner>.item>img {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   -webkit-transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   z-index: 1;
+   transform: translate(-50%, -50%);
+   max-height: 800px;
+   width: 100%;
+}
+
+#menu {
+   position: absolute;
+   text-align: center;
+   z-index: 1;
+   background-color: rgba(38, 38, 38, .7);
+}
+
+#menu>li {
+   width: 150px;
+   height: 40px;
+   line-height: 40px;
+}
+
+#menu>li>a {
+   color: #fff;
+   font-size: 11px;
+}
+
+.carousel-indicators {
+   position: absolute;
+   bottom: 10px;
+   left: 45%;
+   z-index: 15;
+   width: 85%;
+   padding-left: 0;
+   margin-left: -30%;
+   text-align: center;
+   list-style: none;
+}
+#special {
+   width: 100%;
+   height: 350px;
+   border: 8px solid #eee;
+   padding: 5px;
+}
+
+#special_title {
+	height: 44px;
+    font-weight: bold;
+    font-size: xx-large;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+#special_image {
+   margin: 0;
+   display: inline-block;
+   height: 100%;
+   width: 43%;
+}
+
+#special_image > a{
+   display : inline-block;
+   width: 100%;
+   height: 100%;
+}
+
+#special_image > a > img {
+   width: 100%;
+   height: 100%;
+}
+
+#special_content {
+   float: right;
+   height: 100%;
+   width: 55%;
+   padding-top: 130px;
+   text-align: center;
+}
+.contaniner{
+    display: flex;
+    
+  
+}
+.content{
+    display: flex;
+}
+main{
+    flex-basis: auto;
+    flex-grow: 1;   
+}
+/* #korea{
+   height: 30px;
+    font-weight: bold;
+    font-size: large;
+    margin-top : 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+#japanese{
+   height: 30px;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+#chinese{
+   height: 30px;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+} */
+.recomend_title{
+   height: 36px;
+    font-weight: bold;
+    font-size: x-large;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+#korea_food{
+    display: flex;
+    justify-content: space-between;
+  
+}
+#japanese_food{
+display: flex;
+justify-content: space-between;
+}
+#chinese_food{
+display: flex;
+justify-content: space-between;
+}
+.product_list img {
+    max-width: 100%;
+    max-height: 100%;     
+    height: 190px;
+    width: 218px;
+}
+.product_list{
+    width: 960px;     
+}
+.product_list li{
+    float: left;
+    margin: 10px;
+    position: relative;
+    width: 218px;
+    height: 300px;
+    border: 1px solid white;
+}
+.product_list dl { 
+    padding: 200px 0 0 0;
+}
+.product_list dt a { 
+    font-size: 16px; color:#1a1a1a;
+    
+}
+.product_list .img{
+    position: absolute; left: 0; top: 0;
+}
+.product_list .price{
+    float: left;
+    font-size: 24px; color:#1a1a1a; 
+    font-weight: bold; 
+}
+.product_list .btm { 
+    position: absolute; 
+    left: 0; bottom: 0; 
+    width: 100%;
+    border-top: 1px solid #fafafa;
+}
+.product_list .btm div{
+    float: left; width: 50%; height: 30px; line-height: 30px; 
+    font-size: 12px;
+    color: #767676;
+}
+.product_list .btm div a {
+    font-size: 12px;
+    color: #767676;
+    float: left;
+} 
+.review {
+   display: inline-block;
+   width: 470px;
+}
+
+.review_content_box {
+   display: inline-block;
+}
+
+.review_image {
+   float: left;
+   padding-right: 10px;
+   width: 100px;
+   height: 100px;
+}
+
+.review_content h3 {
+   padding-bottom: 10px;
+}
+
+.review_star_ratio {
+   color: red;
+}
+
+.review_content {
+   font-size: 12px;
+}
+
+.footer_child {
+   display: inline-block;
+   width: 49%;
+}
+.price_nodiscount{
+   font-weight: 700;
+    font-size: 20px;
+}
+.price_discount{
+   font-weight: 500;
+    font-size: 18px;
+    text-decoration: line-through;
+    color: #9e9e9e;
+}
+.price_ratio{
+   color: red;
+   vertical-align: middle;
+   font-size: 18px;
+}
+.price{
+   width: 100%;
+}

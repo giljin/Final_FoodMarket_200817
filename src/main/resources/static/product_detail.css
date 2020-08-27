@@ -1,0 +1,312 @@
+
+* {
+   margin: 0;
+   padding: 0;
+}
+#wrap {
+   margin: 0 auto;
+   width: 960px;
+}
+#itemImages {
+   float: left;
+   width: 50%
+}
+#search_image{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    background-image: url(./image/search_icon.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 19px;
+    height: 21px;
+    border: 0px;
+    outline: 0;
+}
+#itemInfo {
+   float: right;
+   width: 50%
+}
+
+#itemMainImage {
+   padding-top:10px;
+   padding-right:20px;
+   display: flex;
+}
+
+#itemTitle {
+   font-size: 25px;
+}
+
+#itemCard {
+   margin: 5px 0;
+}
+
+.card {
+   display: inline-block;
+   width: 35px;
+   height: 15px;
+   border-radius: 2px;
+   background-color: crimson;
+   font-size: 6px;
+   text-align: center;
+   color: aliceblue;
+}
+
+.valueTitle {
+   float: left;
+   width: 20%;
+}
+
+.valueContent {
+   width: 80%;
+}
+
+.itemValue {
+   font-size: 13px;
+}
+
+.itemValueBox {
+   margin-top: 15px;
+}
+
+ol {
+   list-style: none;
+   padding-left: 0px;
+}
+
+hr {
+   margin: 20px 0;
+   border-color: #eee;
+}
+
+#itemoption {
+   border: 1px solid lightgrey;
+   font-size: 10px;
+   padding: 10px;
+   width: 95.5%;
+   height: 40px;
+   display: inline-table;
+}
+
+#option-bottom-num {
+   float: left;
+   border: 1px solid lightgrey;
+}
+
+#option-bottom {
+   padding-top: 10px
+}
+
+#option-bottom-price {
+   float: right;
+   padding-top: 5px;
+}
+
+.counting_btn {
+   width: 30px;
+   height: 20px;
+}
+
+#option-bottom-num label {
+   width: 10px;
+}
+
+#option-count-plus {
+   float: left;
+}
+
+#option-count-minus {
+   float: right;
+}
+
+#option-count {
+   float: left;
+   width: 25px;
+   text-align: center;
+   padding-top: 2px;
+}
+
+.btn {
+   width: 49%;
+   border-radius: 3px;
+   outline: 0;
+   border: 0;
+   height: 35px;
+   margin-top: 5px;
+}
+
+.buy {
+   background-color: red;
+   color: white;
+}
+
+.cart {
+   background-color: burlywood;
+   color: white;
+}
+
+.qna {
+   background-color: darkseagreen;
+   color: white;
+   width: 99%;
+}
+
+#buybtns {
+   margin-top: 10px;
+}
+
+.main-image {
+   width: 100%;
+   height: 448px;
+}
+
+#active-tab {
+   display: inline-block;
+}
+#itemMainTemplate{
+   display: flex;
+    margin-bottom: 20px;
+}
+.review-card{
+   border: 1px solid lightgray;
+   padding: 10px;
+   font-size: 12px;
+   margin-bottom: 10px;
+   display: grid;
+}
+.review-image{
+   width: 80px;
+   height: 80px;
+   margin-right: 10px;
+   float: left;
+}
+.review-starratio{
+   color: red;
+}
+
+#tab1{
+   margin-right: 20px;
+}
+li {
+   list-style: none;
+}
+
+a {
+   text-decoration: none;
+}
+header {
+   width: 100%;
+}
+#header_top {
+   background: #f5f5f5;
+   color: #424242;
+   font-size: small;
+   height: 30px;
+   text-align: right;
+}
+
+#header_top>ul {
+   line-height: 30px;
+   display: inline-block;
+   list-style-type: disc;
+}
+
+#header_top>ul>li {
+   display: inline-block;
+   margin-right: 5px;
+}
+
+#header_top>ul>li>a {
+   text-decoration: inherit;
+   color: inherit;
+}
+
+#header_mid {
+   width: 100%;
+   height: 55px;
+}
+
+#logo {
+   width: 70%;
+   display: inline-block;
+   text-align: right;
+}
+
+#logo > a{
+   display:inline-block;
+   position: relative;
+   top: 5px;
+   right: 110px;
+   width: 200px;
+   height : 48px;
+}
+
+#search {
+   position: relative;
+   top: 10px;
+   display: inline-block;
+   margin-left: 108px;
+}
+#search_bar>form {
+   display: inline-block;
+}
+
+#search_bar>a>img {
+   position: relative;
+    top: -22.5px;
+    right: -143px;
+    width: 18px;
+    height: 18px;
+}
+
+nav {
+   position: relative;
+   margin-bottom: 10px;
+}
+
+#category {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 1px solid #d9d9d9;
+}
+
+#category>div {
+   display: inline-block;
+   width: 111px;
+}
+
+#category>:nth-child(1) {
+   background-color: #262626;
+   display: inline-block;
+   width: 150px;
+   text-align: center;
+   line-height: 30px;
+   height: 30px;
+   color: #fff;
+   font-size: 12px;
+   margin-bottom: 1px;
+}
+.footer_child {
+   display: inline-block;
+   width: 49%;
+}
+#footer{
+   margin-top: 50px;
+}
+#logo > a{
+   display:inline-block;
+   position: relative;
+   top: 5px;
+   right: 110px;
+   width: 200px;
+   height : 48px;
+}
+#detail-content{
+   text-align: center;
+}
+.content-image{
+   width: 900px;
+}

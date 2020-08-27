@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IMemberDao">
+
+	<select id="listDao" parameterType="String" resultType="com.study.springboot.dto.MemberDTO">
+      SELECT * FROM ( 
+          SELECT IDX, U_EMAIL, U_NAME, U_PHONE, U_ADDRESS, 
+              U_POINT, ROW_NUMBER() OVER(ORDER BY member.idx DESC) AS rNUM
+          FROM member ${ query }
+       )
+       WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY idx DESC
+   </select>
+
+	<select id="idCheckDao"
+		resultType="com.study.springboot.dto.MemberDTO">
+		select * from member where u_email = #{param1}
+	</select>
+	
+	<select id="myInfo" resultType="com.study.springboot.dto.MemberDTO">
+		select * from member where idx = #{param1} 	
+	</select>
+
+	<select id="loginDao"
+		resultType="com.study.springboot.dto.MemberDTO">
+		select * from member where u_email = #{param1} and u_pw = #{param2}
+	</select>
+
+	<insert id="joinDao">
+		insert into member (idx, u_email, u_pw, u_name, u_phone, u_address, u_point)
+		values (member_seq.nextval, #{u_email}, #{u_pw}, #{u_name},
+		#{u_phone}, #{u_address}, #{u_point})
+	</insert>
+
+	<delete id="deleteDao">
+		delete from member where idx = #{param1}
+	</delete>
+
+	<update id="updateDao">
+		update member set writer = #{writer}, title = #{title},
+		content = #{content} where id = #{id}
+	</update>
+
+	<update id="modify">
+    	UPDATE MEMBER SET
+    		u_pw = #{param2},
+    		u_name = #{param3},
+    		u_phone = #{param4},
+    		u_address = #{param5}
+    	where
+    		u_email = #{param1}
+    </update>
+    <select id="find_id" resultType="string"> 
+    	SELECT u_email 
+    		from member
+    	 WHERE u_phone = #{param1}
+    </select>
+    <select id="find_pw" resultType="string"> 
+    	SELECT u_pw 
+    		from member
+    	 WHERE u_email = #{param1}
+    </select>
+	
+	<select id="articleCount" resultType="int">
+      <![CDATA[ SELECT COUNT(idx) FROM (
+               SELECT IDX FROM member 
+              )WHERE idx >= 0
+      ]]>
+   </select>
+
+	<select id="get_My_Point" resultType="_int">
+		select u_point from member where u_email = #{param1}
+	</select>
+	
+	<update id="update_My_Point">
+		UPDATE member SET u_point = #{param2} where u_email = #{param1}
+	</update>
+</mapper>

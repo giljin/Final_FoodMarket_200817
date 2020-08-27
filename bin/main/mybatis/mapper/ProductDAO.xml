@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IProductDAO"> 
+
+<select id="listProductDao" resultType="com.study.springboot.dto.ProductDTO"> 
+      SELECT * FROM ( 
+          SELECT IDX, P_NAME, P_PRICE, P_DISCOUNT_RATIO, P_DISCOUNT_PRICE,
+              CATEGORY, WEIGHT, P_COUNT, SPECIAL,P_FILENAME, ROW_NUMBER() OVER(ORDER BY product.idx DESC) AS rNUM
+          FROM product   
+       )
+       WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY idx DESC
+   </select>
+   
+   <select id="searchProductManagementDao" parameterType="String" resultType="com.study.springboot.dto.ProductDTO">
+         SELECT * FROM ( 
+          SELECT IDX, P_NAME, P_PRICE, P_DISCOUNT_RATIO, P_DISCOUNT_PRICE,
+              CATEGORY, WEIGHT, P_COUNT, SPECIAL,P_FILENAME, ROW_NUMBER() OVER(ORDER BY product.idx DESC) AS rNUM
+          FROM product ${query}  
+       )
+       WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY idx DESC
+   </select>
+   
+   <select id="viewProductDao" resultType="com.study.springboot.dto.ProductDTO"> 
+      select * from product where idx = #{param1}
+   </select>
+   
+   <select id="searchProductDao" resultType="com.study.springboot.dto.ProductDTO"> 
+      select * from product where p_name like '%'||#{param1}||'%' 
+   </select>
+   
+   <select id="categoryProductDao" resultType="com.study.springboot.dto.ProductDTO"> 
+      <![CDATA[ SELECT * FROM ( SELECT * FROM product WHERE category = #{param1} ORDER BY idx DESC ) ]]>
+   </select>
+   
+   <select id="specialProductDao" resultType="com.study.springboot.dto.ProductDTO">
+        SELECT * FROM product WHERE special='O'     
+   </select>
+   
+   <update id="specialUpdateDao">
+         UPDATE product SET special = #{param1} WHERE idx = #{param2}
+   </update>
+   
+   <insert id="writeProductDao"> 
+      insert into product (idx, p_name, p_price, p_discount_ratio, p_discount_price, category, weight,
+                        p_count, p_content, special, p_filename)
+         values (product_seq.nextval, #{p_name}, #{p_price}, #{p_discount_ratio}, #{p_discount_price}, #{category}, #{weight},
+                  #{p_count}, #{p_content}, #{special}, #{p_filename})
+   </insert>
+   
+   <delete id="deleteProductDao">
+      delete from product where idx = #{param1}
+   </delete>
+   
+   <update id="updateProductDao">
+      update product set p_name = #{p_name}, p_price = #{p_price}, p_discount_ratio = #{p_discount_ratio},
+                      p_discount_price = #{p_discount_price}, category = #{category}, weight = #{weight},
+                      p_count = #{p_count}, p_content = #{p_content}, special = #{special},
+                      p_filename = #{p_filename} where idx = #{idx}
+   </update>
+   
+   <select id="articleProductCount" resultType="int">
+      <![CDATA[ SELECT COUNT(idx) FROM (
+               SELECT IDX FROM product 
+              )WHERE idx >= 0
+      ]]>
+   </select>
+   
+    <select id="findProductDao" resultType="com.study.springboot.dto.ProductDTO">
+         SELECT * FROM product WHERE p_name = #{parma1}
+   </select>
+</mapper>

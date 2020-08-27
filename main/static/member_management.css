@@ -1,0 +1,81 @@
+#title{
+	text-align: center;
+}
+#keywordCategory{
+	display: inline-block;
+	width: 13%;
+}
+#keyword{
+	display: inline-block;
+    border: 1px solid #CCC;
+    line-height: 28px;
+    position: relative;
+    top: -2px;
+    width: 50%;
+    padding-left: 5px;
+}
+#memberSearch{
+	width:100%;
+	border-top: 1px solid black;
+	margin-bottom: 20px;
+}
+#memberSearch tr{
+	border-bottom: 1px solid lightgray;
+}
+#memberSearch th{
+	width: 10%;
+	text-align: center;
+}
+#memberSearch td{
+	text-align: left;
+    font-size: 12px;
+}
+
+.search {
+    background: #0080ff;
+    border: 1px solid #ddd;
+    color: #ffffff;
+    padding: 10px 40px;
+}
+.clear {
+    padding: 10px 20px;
+    border: none;
+}
+
+.searchBtns {
+    margin-bottom: 50px;
+    text-align: center;
+}
+#memberList{
+	border-top: 1px solid black;
+	width: 100%;
+}
+#memberList th{
+	text-align: center;
+}
+#memberList .th1{
+	width: 30px;
+}
+.th7{
+	width: 40px;
+}
+#memberList tr{
+	border-bottom: 1px solid lightgray;
+}
+#memberList td{
+	font-size: 14px;
+	height: 30px;
+    line-height: 30px;
+}
+#listCount {
+    float: left;
+}
+
+#cri{
+	text-align: center;
+	margin-top: 10px;
+}
+#cri li{
+	display: inline-block;
+	margin-right: 10px;
+}

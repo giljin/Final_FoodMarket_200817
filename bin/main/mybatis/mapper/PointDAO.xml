@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IPointDAO"> 
+	<insert id="save_Point">
+		insert into point (idx,p_email,get_point,use_point,remain_point) values(point_seq.nextval,#{param1},#{param2},0,#{param3})
+	</insert>
+	
+	<insert id="use_Point">
+		insert into point (idx,p_email,get_point,use_point,remain_point) values(point_seq.nextval,#{param1},0,#{param2},#{param3})
+	</insert>
+	
+	<select id="get_My_Remain_Point" resultType="int">
+		select remain_point FROM point where idx = (
+    		select MAX(idx) FROM point where p_email= #{param1}
+		)
+	</select>
+		
+	<select id="pointList" parameterType="com.study.springboot.domain.Criteria"  resultType="com.study.springboot.dto.PointDTO">
+   		  			select IDX,P_EMAIL,GET_POINT,USE_POINT,REMAIN_POINT,P_DATE
+		    from (
+		        select IDX,P_EMAIL,GET_POINT,USE_POINT,REMAIN_POINT,P_DATE,
+		            row_number() over(order by idx desc) as rNum
+		        from point
+		        ) 
+		    where p_email = #{u_email} and rNum between #{rowStart} and #{rowEnd}
+		        order by idx desc
+	</select>
+	<select id="listCount" resultType="int">
+		select count(idx) from point where idx > 0 and p_email = #{param1}
+	</select>
+	<delete id="delete">
+		delete from point where p_email = #{param1}
+	</delete>
+</mapper>

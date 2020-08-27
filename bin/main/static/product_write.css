@@ -1,0 +1,56 @@
+#product_data{
+	width: 48%;
+	border: 1px solid lightgray;
+	float: right;
+}
+#product_data th {
+	background: #ccc;
+	width: 20%;
+	text-align: center;
+}
+td input{
+	display:inline-block;
+}
+	
+#product_data tr {
+	border-bottom: 1px solid lightgray;
+}
+#title{
+	text-align: center;
+}
+#main_image{
+	border: 1px solid black;
+	height: 500px;
+	width: 50%;
+	float:left;
+}
+#main_image img{
+	border: 1px solid black;
+	width: 100%;
+	height: 100%;
+}
+#buttons{
+	float: right;
+	display: inline-block;
+	width: 45%;
+	text-align: center;
+	
+}
+#buttons input{
+	margin-right: 10px;
+	margin-top: 10px;
+	padding: 5px 20px;
+	background: #c0c0c0;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+#product_data td {
+	text-align: left;
+	padding-left: 15px;
+}
+#product_data td input[type="text"]{
+	width: 250px;
+}
+#product_data td input[type="radio"]{
+	margin-left: 10px;
+}

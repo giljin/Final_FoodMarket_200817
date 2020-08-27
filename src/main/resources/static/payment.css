@@ -1,0 +1,148 @@
+#step{
+	display: flex;
+    justify-content: flex-end;
+    font-size: 14px;
+}
+section h1{
+	text-align: center;
+	margin-bottom: 20px;
+}
+section{
+	margin-bottom: 100px;
+}
+#step-buy{
+	color: red;
+}
+#payment-items{
+	display: inline-block;
+	width: 60%;
+}
+#payment-cash{
+	display: inline-block;
+	width: 35%;
+	vertical-align: top;
+	margin-left: 30px;
+}
+.bg-gray{
+	background-color: lightgray;
+}
+
+.info-title{
+	display: inline-block;
+	width: 50%;
+	margin-bottom:20px;
+}
+.info-content{
+	display: inline-block;
+	width: 48%;
+	text-align: end;
+}
+#info-total-title{
+	display: inline-block;
+	width: 50%;
+	
+}
+#info-total-content{
+	display: inline-block;
+	width: 48%;
+	text-align: end;
+	color: red;
+}
+#info-total-price{
+	padding: 10px;
+}
+#info-header{
+	margin-bottom: 30px;
+	font-size: 22px;
+	text-align: center;
+}
+
+.btn {
+   width: 100%;
+   border-radius: 5px;
+   outline: 0;
+   border: 0;
+   height: 35px;
+   margin-top: 10px;
+}
+
+.buy {
+   background-color: red;
+   color: white;
+}
+#order-form{
+	margin-bottom: 20px;
+}
+.order-inputs{
+	display: inline-block;
+	width: 79%;
+}
+.order-inputs input{
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+}
+.order-field label{
+	width: 20%;
+}
+#order-form {
+	padding: 10px;
+}
+#order-header{
+	margin: 20px 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+.order-field{
+	margin-bottom: 10px;
+}
+.bd-lg{
+	border: 1px solid lightgray;
+}
+
+#recipient-form{
+	padding: 10px;
+	padding-bottom: 20px;
+}
+.recipient-field{
+	margin-top: 10px;
+}
+.recipient-field label{
+	width: 20%;
+}
+.recipient-inputs{
+	display: inline-block;
+	width: 79%;
+}
+.recipient-inputs input{
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+#recipient_btn{
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px 15px;
+	border: 1px solid;
+}
+
+#recipient_detailAddress{
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 10px;
+	width: 50%;
+}
+.recipient_input{
+	background-color: lightgray;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	width: 49%;
+}
+#recipient_address{
+	width:100%;
+}
+.info-content label{
+	font-weight: normal;
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IOrderDAO"> 
+	
+	<select id="listDao" resultType="com.study.springboot.dto.OrderDTO"> 
+		select * from ORDERLIST WHERE O_number =#{param1} 
+	</select>
+	
+	<select id="my_order_number" parameterType="com.study.springboot.domain.Criteria" resultType="string"> 
+		select o_number
+		    from (
+                    select o_number,
+                        row_number() over(order by o_number desc) as rNum
+                    from (
+                        select DISTINCT o_number from orderlist where o_order = #{u_email}
+                    ) 
+        ) where rNum between #{rowStart} and #{rowEnd}
+	</select>	
+	
+	<select id="searchDao"  parameterType="String" resultType="com.study.springboot.dto.OrderDTO">
+      SELECT  * FROM ( 
+          SELECT IDX, O_NUMBER, O_ORDER, O_ORDERNAME, O_RECIVER,
+              O_TITLE, O_STATE, O_COUNT, O_PRICE, O_DLV_CHARGE,
+              O_ADDR, O_PHONE, O_DATE , ROW_NUMBER() OVER(ORDER BY orderlist.idx DESC) AS rNUM
+          FROM orderlist  ${ query } 
+       )
+       WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY idx DESC
+   </select>   
+	
+	<delete id="cancle_My_Order"> 
+		DELETE FROM orderlist where idx = #{param1}
+	</delete>
+	
+<update id="update_My_Order"> 
+      UPDATE orderlist set o_state = #{param1} where idx = #{param2}
+   </update>
+	
+	<update id="reWrite_My_Order"> 
+		UPDATE orderlist set o_state = '배송완료' where idx = #{param1}
+	</update>
+	
+	<insert id="insert_My_OrderDao">
+      INSERT INTO orderlist (idx, o_number, o_order,o_ordername ,o_reciver, o_title, o_state, o_count, o_price, o_dlv_charge, o_addr, o_phone , o_point, p_total)
+         VALUES(order_seq.nextval, #{O_NUMBER}, #{O_ORDER},#{O_ORDERNAME} ,#{O_RECIVER}, #{O_TITLE}, #{O_STATE}, #{O_COUNT}, #{O_PRICE}, #{O_DLV_CHARGE}, #{O_ADDR}, #{O_PHONE} ,#{O_POINT}, #{P_TOTAL} )
+   </insert>
+   
+   	<select id="myPage_listCount" resultType="int">
+		select count(DISTINCT o_number) from orderlist where idx > 0 and o_order = #{param1}
+	</select>
+   
+	<update id="update_Total_Price">
+		UPDATE orderlist set p_total = #{param1} where o_number = #{param2}
+	</update>
+	
+	<select id="allSearchDao"  resultType="com.study.springboot.dto.OrderDTO">
+      SELECT  * FROM ( 
+          SELECT IDX, O_NUMBER, O_ORDER, O_ORDERNAME, O_RECIVER,
+              O_TITLE, O_STATE, O_COUNT, O_PRICE, O_DLV_CHARGE,
+              O_ADDR, O_PHONE, O_DATE , ROW_NUMBER() OVER(ORDER BY orderlist.idx DESC) AS rNUM
+          FROM orderlist   
+       )
+       WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY idx DESC
+   </select>
+   
+   <select id="listCountDao" parameterType="String" resultType="int">
+      <![CDATA[ SELECT COUNT(idx) FROM (
+               SELECT IDX FROM orderlist ${ query }
+              )WHERE idx > 0
+      ]]>
+   </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.ICartDAO">
+   
+   <select id="listCartDao" resultType="com.study.springboot.dto.CartDTO"> 
+         select * from cartlist where user_idx = #{param1} 
+      </select>
+      
+      <select id="CartDao" resultType="com.study.springboot.dto.CartDTO"> 
+         select * from cartlist where cart_num1 = #{param1} 
+      </select>
+      
+      <insert id="insertCartDao">
+      insert into cartlist (cart_num, user_idx, product_idx, product_count) 
+         values (cart_seq.nextval, #{user_idx}, #{product_idx}, #{product_count})
+   </insert>
+   
+   <delete id="deleteCartDao">
+         delete from cartlist where product_idx = #{param1}
+      </delete>
+      
+      <update id="updateCartDao">
+         update cartlist set product_count = #{count} where product_idx = #{product_idx}
+      </update>
+   
+</mapper>

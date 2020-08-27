@@ -1,0 +1,88 @@
+table{
+	width: 100%;
+	border-top: 1px solid black;
+}
+th {
+	text-align: center;
+}
+tr {
+	border-bottom: 1px solid lightgray;
+}
+#title{
+	text-align: center;
+}
+#productQnaSearch{
+	width: 100%;
+	margin-bottom: 20px;
+}
+#productQnaSearch th{
+	width: 10%;
+	text-align: center;
+}
+#productQnaSearch td{
+	text-align: left;
+	font-size: 12px;
+	display:table-cell;
+    vertical-align:middle;
+}
+#productQnaSearch td input{
+	margin-left: 10px;
+}
+.clear{
+    padding: 10px 20px;
+    border: none;
+}
+.search{
+	background: #0080ff;
+	border: 1px solid #ddd;
+	color: #ffffff;
+	padding: 10px 40px;
+}
+.searchBtns{
+	margin-bottom: 50px;
+	text-align: center;
+}
+#listCount{
+	float: left;
+}
+#sort{
+	float: right;
+}
+#memberList th{
+	text-align: center;
+}
+#memberList td{
+	width:auto;
+	font-size: 14px;
+	text-align: center;
+}
+
+#keywordCategory{
+	display: inline-block;
+	width: 13%;
+}
+#keyword{
+	border: 1px solid #CCC;
+    line-height: 28px;
+    position: relative;
+    top: -2px;
+    width: 50%;
+    padding-left: 5px;
+}
+#sortCategory{
+	display: inline-block;
+	width: 13%;
+	float: right;
+}
+#stateCategory{
+	display: inline-block;
+	width: 13%;
+}
+#cri {
+	text-align: center;
+}
+
+#cri>ul>li {
+	margin-left: 10px;
+	display: inline-block;
+}
